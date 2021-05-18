@@ -41,7 +41,21 @@ function App() {
   };
 
   const formSubmit = () => {
-    
+    let newMember = {
+      name: formValue.name.trim(),
+      email: formValue.email.trim(),
+      role: formValue.role
+    };
+
+    if (newMember.name.length && newMember.email.length && newMember.role.length){
+      setTeam([newMember, ...team]);
+      setFormValue({
+        name: "",
+        email: "",
+        role: ""
+      });
+    }
+
   };
 
   console.log(formValue);

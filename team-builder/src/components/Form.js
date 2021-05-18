@@ -7,6 +7,7 @@ function Form ({value, submit, update}){
   };
 
   const onSubmit = (event) => {
+    event.preventDefault();
     submit();
   };
 
@@ -38,7 +39,7 @@ function Form ({value, submit, update}){
         <option value="Vaporware Engineer">Vaporware Engineer</option>
         <option value="Malware Engineer">Malware Engineer</option>
       </select>
-      <button>Submit</button>
+      <button disabled={!(value.name.length && value.email.length && value.role.length)}>Submit</button>
     </form>
   );
 }

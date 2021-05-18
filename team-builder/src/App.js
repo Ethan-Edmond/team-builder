@@ -1,71 +1,33 @@
 import './App.css';
 import React, { useState }from "react";
-
-import TeamMember from "./components/TeamMember";
-import Form from "./components/Form";
-
-const initialTeam = [
-  {
-    name: "Ethan",
-    email: "eedmond@uccs.edu",
-    role: "Front End Engineer"
-  },
-  {
-    name: "Kazden",
-    email: "kjolley@fakemail.com",
-    role: "Back End Engineer"
-  },
-  {
-    name: "Mike",
-    email: "mkochis@fakemail.com",
-    role: "Database Engineer"
-  },
-  {
-    name: "Dom",
-    email: "dsallustro@fakemail.com",
-    role: "Designer"
-  }
-];
+import Team from "./components/Team";
+import data from "./data";
 
 function App() {
-  const [team, setTeam] = useState(initialTeam);
-  const [memberToEdit, setMemberToEdit] = useState();
+  const [teams, setTeams] = useState(data);
+  console.log(teams);
 
-  const formSubmit = (member, resetcb) => {
-    let newMember = {
-      name: member.name.trim(),
-      email: member.email.trim(),
-      role: member.role
-    };
-
-    if (newMember.name.length && newMember.email.length && newMember.role.length){
-      setTeam([newMember, ...team]);
-      resetcb();
-    }
-  };
-
-  function makeMemberSetter (index){
-    return (member) => {
-      let newTeam = [...team];
-      newTeam[index] = member;
-      setTeam(newTeam);
+  function makeTeamSetter (index) {
+    return (team) => {
+      let newTeams = [...teams];
+      newTeams[index] = team;
+      setTeams(newTeams);
     };
   }
 
-  console.log(team);
   return (
     <>
-      <Form submit={formSubmit}/>
-      {team.map((member, index) => (
-        <TeamMember
-          key={index}
-          member={member}
-          setMember={makeMemberSetter(index)}
-          setMemberToEdit={setMemberToEdit}
-          isEditing={member === memberToEdit}
-        />))}
+      {
+        teams.map((team, index) => (
+          <>
+            <h2 key={index}>Team #{index + 1}</h2>
+            <Team key={index} team={team} setTeam={makeTeamSetter(index)}/>
+          </>
+        ))
+                 }
     </>
   );
 }
+
 
 export default App;

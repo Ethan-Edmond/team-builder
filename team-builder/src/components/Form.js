@@ -1,6 +1,6 @@
 import React from "react";
 
-function TeamForm (props){
+function Form (props){
 
   return (
     <form>
@@ -18,4 +18,4 @@ function TeamForm (props){
   );
 }
 
-export default TeamForm;
+export default Form;

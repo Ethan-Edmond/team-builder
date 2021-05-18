@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState }from "react";
 
 import TeamMember from "./components/TeamMember";
-import TeamForm from "./components/TeamForm";
+import Form from "./components/Form";
 
 const initialTeam = [
   {
@@ -30,10 +30,9 @@ const initialTeam = [
 function App() {
   const [team, setTeam] = useState(initialTeam);
 
-  console.log(team);
   return (
     <>
-      <TeamForm/>
+      <Form/>
       {team.map((member, index) => <TeamMember key={index} member={member}/>)}
     </>
   );

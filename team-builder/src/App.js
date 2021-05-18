@@ -29,10 +29,25 @@ const initialTeam = [
 
 function App() {
   const [team, setTeam] = useState(initialTeam);
+  const [formValue, setFormValue] = useState({
+    name: "",
+    email: "",
+    role: ""
+  });
 
+  const formUpdate = (name, value) => {
+    let newFormValue = {...formValue, [name]: value};
+    setFormValue(newFormValue);
+  };
+
+  const formSubmit = () => {
+    
+  };
+
+  console.log(formValue);
   return (
     <>
-      <Form/>
+      <Form value={formValue} update={formUpdate} submit={formSubmit}/>
       {team.map((member, index) => <TeamMember key={index} member={member}/>)}
     </>
   );

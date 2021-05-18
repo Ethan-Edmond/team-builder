@@ -29,6 +29,7 @@ const initialTeam = [
 
 function App() {
   const [team, setTeam] = useState(initialTeam);
+  const [memberToEdit, setMemberToEdit] = useState();
 
   const formSubmit = (member, resetcb) => {
     let newMember = {
@@ -43,10 +44,24 @@ function App() {
     }
   };
 
+  function makeMemberSetter (index){
+    return (member) => {
+      let newTeam = [...team];
+      newTeam[index] = member;
+      setTeam(newTeam);
+    };
+  }
+
+  console.log(team);
   return (
     <>
       <Form submit={formSubmit}/>
-      {team.map((member, index) => <TeamMember key={index} member={member}/>)}
+      {team.map((member, index) => (
+        <TeamMember
+          key={index}
+          member={member}
+          setMember={makeMemberSetter(index)}
+        />))}
     </>
   );
 }

@@ -1,11 +1,41 @@
 import './App.css';
 import React, { useState }from "react";
 
-const initialTeam = [{name: "Ethan"}, {name: "Kazden"}, {name: "Mike"}, {name: "Dom"}];
+import TeamMember from "./components/TeamMember";
+import TeamForm from "./components/TeamForm";
+
+const initialTeam = [
+  {
+    name: "Ethan",
+    email: "eedmond@uccs.edu",
+    role: "Front End Engineer"
+  },
+  {
+    name: "Kazden",
+    email: "kjolley@fakemail.com",
+    role: "Back End Engineer"
+  },
+  {
+    name: "Mike",
+    email: "mkochis@fakemail.com",
+    role: "Database Engineer"
+  },
+  {
+    name: "Dom",
+    email: "dsallustro@fakemail.com",
+    role: "Designer"
+  }
+];
+
 function App() {
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState(initialTeam);
+
+  console.log(team);
   return (
-    <h1>AAAAA</h1>
+    <>
+      <TeamForm/>
+      {team.map((member, index) => <TeamMember key={index} member={member}/>)}
+    </>
   );
 }
 

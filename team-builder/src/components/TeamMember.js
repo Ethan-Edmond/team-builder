@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "./Form";
 
-function TeamMember ({member, setMember}){
+function TeamMember ({member, setMember, setMemberToEdit, isEditing}){
   const { name, email, role } = member;
 
   const formSubmit = (formMember, resetcb) => {
@@ -24,8 +24,8 @@ function TeamMember ({member, setMember}){
         <h5>Email: {email}</h5>
         <h5>Role: {role}</h5>
       </div>
-      <button onClick={e => setMember({...member, name: "AAAAAAA"})}>Edit Member</button>
-      <Form submit={formSubmit}/>
+      {!isEditing && <button onClick={e => setMemberToEdit(member)}>Edit Member</button>}
+      {isEditing && <Form submit={formSubmit}/>}
     </div>
   );
 }

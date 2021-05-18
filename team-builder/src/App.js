@@ -61,6 +61,8 @@ function App() {
           key={index}
           member={member}
           setMember={makeMemberSetter(index)}
+          setMemberToEdit={setMemberToEdit}
+          isEditing={member === memberToEdit}
         />))}
     </>
   );

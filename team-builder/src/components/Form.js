@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Form ({value, submit, update}){
+function Form ({submit}){
+  const [value, setValue] = useState({
+    name: "",
+    email: "",
+    role: ""
+  });
+
+  const update = (formName, formValue) => {
+    let newFormValue = {...value, [formName]: formValue};
+    setValue(newFormValue);
+  };
 
   const onChange = (event) => {
     update(event.target.name, event.target.value);
@@ -8,7 +18,11 @@ function Form ({value, submit, update}){
 
   const onSubmit = (event) => {
     event.preventDefault();
-    submit();
+    submit(value, () => setValue({
+      name: "",
+      email: "",
+      role: ""
+    }));
   };
 
   return (

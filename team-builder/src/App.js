@@ -29,39 +29,23 @@ const initialTeam = [
 
 function App() {
   const [team, setTeam] = useState(initialTeam);
-  const [formValue, setFormValue] = useState({
-    name: "",
-    email: "",
-    role: ""
-  });
 
-  const formUpdate = (name, value) => {
-    let newFormValue = {...formValue, [name]: value};
-    setFormValue(newFormValue);
-  };
-
-  const formSubmit = () => {
+  const formSubmit = (member, resetcb) => {
     let newMember = {
-      name: formValue.name.trim(),
-      email: formValue.email.trim(),
-      role: formValue.role
+      name: member.name.trim(),
+      email: member.email.trim(),
+      role: member.role
     };
 
     if (newMember.name.length && newMember.email.length && newMember.role.length){
       setTeam([newMember, ...team]);
-      setFormValue({
-        name: "",
-        email: "",
-        role: ""
-      });
+      resetcb();
     }
-
   };
 
-  console.log(formValue);
   return (
     <>
-      <Form value={formValue} update={formUpdate} submit={formSubmit}/>
+      <Form submit={formSubmit}/>
       {team.map((member, index) => <TeamMember key={index} member={member}/>)}
     </>
   );
